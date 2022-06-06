@@ -54,8 +54,9 @@ async function createTables() {
             name VARCHAR(255) UNIQUE NOT NULL
         );
         CREATE TABLE post_tags (
-            "postId" INTEGER UNIQUE REFERENCES posts(id),
-            "tagId" INTEGER UNIQUE REFERENCES tags(id)
+            "postId" INTEGER REFERENCES posts(id),
+            "tagId" INTEGER REFERENCES tags(id),
+            UNIQUE ("postId", "tagId")
         );
       `);
             
@@ -201,7 +202,7 @@ async function testDB() {
       const updatePostTagsResult = await updatePost(posts[1].id, {
           tags: ["#youcandoanything", "#redfish", "#bluefish"]
       });
-      console.log(" -----------------Result:", updatePostTagsResult);
+      console.log("Result:", updatePostTagsResult);
 
       console.log("Calling getPostsByTagName with #happy");
       const postsWithHappy = await getPostsByTagName ("#happy");
