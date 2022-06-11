@@ -7,8 +7,12 @@ const morgan=require('morgan');
 server.use(morgan('dev')); //logs incoming req getting the method, rt, and how long
 server.use(express.json());// reads json from req
 const{client}=require('./db');
+const bodyParser = require('body-parser');
+
 
 client.connect();
+
+server.use(bodyParser.json());
 
 server.listen(PORT, () => {
     console.log('The server is up on port', PORT)
