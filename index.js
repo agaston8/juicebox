@@ -12,6 +12,27 @@ const bodyParser = require('body-parser');
 
 client.connect();
 
+// server.get('/add/:first/to/:second', (req, res, next) => {
+//   res.send(`<h1>${ req.params.first } + ${ req.params.second } = ${
+//     Number(req.params.first) + Number(req.params.second)
+//    }</h1>`);
+// });
+//curl localhost:3000/add/3/to/11
+//returns <h1>3 + 11 = 14</h1>% 
+
+// server.get('/background/:color', (req, res, next) => {
+//   res.send(`
+//     <body style="background: ${ req.params.color };">
+//       <h1>Hello World</h1>
+//     </body>
+//   `);
+// });
+// curl localhost:3000/background/magenta
+//returns
+{/* <body style="background: magenta;">
+<h1>Hello World</h1>
+</body> */}
+
 server.use(bodyParser.json());
 
 server.listen(PORT, () => {
